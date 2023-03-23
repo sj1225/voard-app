@@ -11,10 +11,8 @@ import java.util.Date;
 public class Board {
     private Integer board_no;
     private String board_title;
-    private String board_writer;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyyMMddHHmmss", timezone="Asia/Seoul")
-    private Date board_date;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyyMMddHHmmss", timezone="Asia/Seoul")
-    private Date board_mdf_date;
+    private String board_user_id;
+    private String board_date;
+    private String board_mdf_date;
     private String board_content;
 }
