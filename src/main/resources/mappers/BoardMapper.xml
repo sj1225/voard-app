@@ -6,6 +6,7 @@
         SELECT *
           FROM T_BOARD_LIST
          WHERE ROWNUM <![CDATA[<]]> 100
+        ORDER BY BOARD_NO DESC
     </select>
 
     <select id="getBoardInfo" parameterType="com.asteroid.voardapp.model.Board" resultType="com.asteroid.voardapp.model.Board" >
@@ -13,4 +14,21 @@
           FROM T_BOARD_LIST
          WHERE BOARD_NO = #{board_no}
     </select>
+
+    <insert id="insertBoardInfo" parameterType="com.asteroid.voardapp.model.Board">
+        DECLARE
+            V_BOARD_NO NUMBER;
+        BEGIN
+            SELECT MAX(BOARD_NO) + 1 INTO V_BOARD_NO FROM T_BOARD_LIST;
+
+            INSERT INTO T_BOARD_LIST
+            SELECT V_BOARD_NO,
+                   #{board_title},
+                   #{board_user_id},
+                   TO_CHAR(SYSDATE, 'YYYYMMDDHH24mmss'),
+                   TO_CHAR(SYSDATE, 'YYYYMMDDHH24mmss'),
+                   #{board_content}
+              FROM DUAL;
+        END;
+    </insert>
 </mapper>

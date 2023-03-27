@@ -4,9 +4,7 @@ import com.asteroid.voardapp.mapper.BoardMapper;
 import com.asteroid.voardapp.model.Board;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -27,5 +25,11 @@ public class BoardController {
     public List<Board> getAllBoardList(@PathVariable(name = "board_no") Integer board_no) {
         List<Board> brd = boardMapper.getBoardInfo(board_no);
         return brd;
+    }
+
+    @PostMapping("/api/v1/board")
+    public void insertBoardList(
+            @RequestBody Board brdVo) {
+        boardMapper.insertBoardInfo(brdVo.getBoard_title(), brdVo.getBoard_user_id(), brdVo.getBoard_content());
     }
 }

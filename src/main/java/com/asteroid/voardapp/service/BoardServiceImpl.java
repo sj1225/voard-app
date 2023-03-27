@@ -18,4 +18,6 @@ public class BoardServiceImpl implements BoardService{
     public List<Board> getBoardInfo(Integer board_no) {
         return board.getBoardInfo(board_no);
     }
+    @Override
+    public void insertBoardInfo(String board_title, String board_user_id, String board_content) { board.insertBoardInfo(board_title, board_user_id, board_content); }
 }
