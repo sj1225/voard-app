@@ -8,5 +8,5 @@ import java.util.List;
 public interface BoardMapper {
     public List<Board> getBoardList();
     public List<Board> getBoardInfo(Integer board_no);
-    public void  insertBoardInfo(String board_title, String board_user_id, String board_content);
+    public void insertBoardInfo(String board_title, String board_user_id, String board_content);
 }

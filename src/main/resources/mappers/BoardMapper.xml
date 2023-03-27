@@ -19,14 +19,14 @@
         DECLARE
             V_BOARD_NO NUMBER;
         BEGIN
-            SELECT MAX(BOARD_NO) + 1 INTO V_BOARD_NO FROM T_BOARD_LIST;
+            SELECT NVL(MAX(BOARD_NO),0) + 1 INTO V_BOARD_NO FROM T_BOARD_LIST;
 
             INSERT INTO T_BOARD_LIST
             SELECT V_BOARD_NO,
                    #{board_title},
                    #{board_user_id},
-                   TO_CHAR(SYSDATE, 'YYYYMMDDHH24mmss'),
-                   TO_CHAR(SYSDATE, 'YYYYMMDDHH24mmss'),
+                   TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
+                   TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
                    #{board_content}
               FROM DUAL;
         END;
