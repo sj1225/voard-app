@@ -32,4 +32,10 @@ public class BoardController {
             @RequestBody Board brdVo) {
         boardMapper.insertBoardInfo(brdVo.getBoard_title(), brdVo.getBoard_user_id(), brdVo.getBoard_content());
     }
+
+    @PatchMapping("/api/v1/board")
+    public void updateBoardList(
+            @RequestBody Board brdVo) {
+        boardMapper.updateBoardInfo(brdVo.getBoard_no(), brdVo.getBoard_title(), brdVo.getBoard_user_id(), brdVo.getBoard_content());
+    }
 }
