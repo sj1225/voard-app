@@ -31,4 +31,13 @@
               FROM DUAL;
         END;
     </insert>
+
+    <update id="updateBoardInfo" parameterType="com.asteroid.voardapp.model.Board">
+         UPDATE T_BOARD_LIST
+            SET board_title = #{board_title},
+                board_mdf_date = TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
+                board_content = #{board_content}
+          WHERE board_no = #{board_no}
+            AND board_user_id = #{board_user_id}
+    </update>
 </mapper>
