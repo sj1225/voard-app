@@ -38,4 +38,10 @@ public class BoardController {
             @RequestBody Board brdVo) {
         boardMapper.updateBoardInfo(brdVo.getBoard_no(), brdVo.getBoard_title(), brdVo.getBoard_user_id(), brdVo.getBoard_content());
     }
+
+    @DeleteMapping("/api/v1/board")
+    public void deleteBoardList(
+            @RequestParam Integer board_no, @RequestParam String board_user_id) {
+        boardMapper.deleteBoardInfo(board_no, board_user_id);
+    }
 }

@@ -40,4 +40,10 @@
           WHERE board_no = #{board_no}
             AND board_user_id = #{board_user_id}
     </update>
+
+    <delete id="deleteBoardInfo" parameterType="com.asteroid.voardapp.model.Board">
+        DELETE FROM T_BOARD_LIST
+         WHERE board_no = #{board_no}
+           AND board_user_id = #{board_user_id}
+    </delete>
 </mapper>
