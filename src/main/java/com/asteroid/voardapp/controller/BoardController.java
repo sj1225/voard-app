@@ -21,6 +21,13 @@ public class BoardController {
         return brd;
     }
 
+    @GetMapping("/api/v1/board/search")
+    public List<Board> getBoardListSearch(
+            @RequestParam String search_word) {
+        List<Board> brd = boardMapper.getBoardListSearch(search_word);
+        return brd;
+    }
+
     @GetMapping("/api/v1/board/{board_no}")
     public List<Board> getAllBoardList(@PathVariable(name = "board_no") Integer board_no) {
         List<Board> brd = boardMapper.getBoardInfo(board_no);

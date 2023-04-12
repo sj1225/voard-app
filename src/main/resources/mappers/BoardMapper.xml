@@ -9,6 +9,14 @@
         ORDER BY BOARD_NO DESC
     </select>
 
+    <select id="getBoardListSearch" parameterType="com.asteroid.voardapp.model.Board" resultType="com.asteroid.voardapp.model.Board" >
+        SELECT *
+        FROM T_BOARD_LIST
+        WHERE ROWNUM <![CDATA[<]]> 100
+        AND ( UPPER(BOARD_TITLE) LIKE '%'||UPPER(#{search_word})||'%' OR BOARD_CONTENT LIKE '%'||UPPER(#{search_word})||'%' )
+        ORDER BY BOARD_NO DESC
+    </select>
+
     <select id="getBoardInfo" parameterType="com.asteroid.voardapp.model.Board" resultType="com.asteroid.voardapp.model.Board" >
         SELECT *
           FROM T_BOARD_LIST
@@ -21,7 +29,9 @@
         BEGIN
             SELECT NVL(MAX(BOARD_NO),0) + 1 INTO V_BOARD_NO FROM T_BOARD_LIST;
 
-            INSERT INTO T_BOARD_LIST
+            INSERT INTO T_BOARD_LIST (
+                    BOARD_NO,       BOARD_TITLE,    BOARD_USER_ID,  BOARD_DATE,
+                    BOARD_MDF_DATE, BOARD_CONTENT  )
             SELECT V_BOARD_NO,
                    #{board_title},
                    #{board_user_id},

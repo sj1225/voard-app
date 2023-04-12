@@ -16,6 +16,11 @@ public class BoardServiceImpl implements BoardService{
     };
 
     @Override
+    public List<Board> getBoardListSearch(String search_word) {
+        return board.getBoardListSearch(search_word);
+    };
+
+    @Override
     public List<Board> getBoardInfo(Integer board_no) {
         return board.getBoardInfo(board_no);
     };
