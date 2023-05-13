@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.asteroid.voardapp.mapper.UserMapper">
+    <select id="authUserInfo" parameterType="com.asteroid.voardapp.model.User" resultType="com.asteroid.voardapp.model.User" >
+        SELECT *
+        FROM T_USER_INFO
+        WHERE USER_ID = #{user_id}
+    </select>
+
+    <insert id="insertUserInfo" parameterType="com.asteroid.voardapp.model.User">
+        INSERT INTO T_USER_INFO (
+        USER_ID,    USER_NM,    PASSWORD,   USER_ROLE )
+        SELECT #{user_id},
+        #{user_nm},
+        #{password},
+        '00'    USER_ROLE
+        FROM DUAL
+    </insert>
+</mapper>
