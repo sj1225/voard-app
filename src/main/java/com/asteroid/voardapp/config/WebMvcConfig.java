@@ -1,4 +1,4 @@
-package com.asteroid.voardapp;
+package com.asteroid.voardapp.config;
 
 import java.io.IOException;
 

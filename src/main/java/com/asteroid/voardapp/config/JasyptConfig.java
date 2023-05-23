@@ -1,4 +1,4 @@
-package com.asteroid.voardapp;
+package com.asteroid.voardapp.config;
 
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
