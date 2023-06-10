@@ -3,9 +3,11 @@ package com.asteroid.voardapp.service;
 import com.asteroid.voardapp.mapper.BoardMapper;
 import com.asteroid.voardapp.model.Board;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BoardServiceImpl implements BoardService{
     @Autowired
     BoardMapper board;
