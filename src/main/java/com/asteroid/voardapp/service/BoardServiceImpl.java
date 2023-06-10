@@ -13,13 +13,8 @@ public class BoardServiceImpl implements BoardService{
     BoardMapper board;
 
     @Override
-    public List<Board> getBoardList() {
-        return board.getBoardList();
-    };
-
-    @Override
-    public List<Board> getBoardListSearch(String search_word) {
-        return board.getBoardListSearch(search_word);
+    public List<Board> getBoardList(String search_word) {
+        return board.getBoardList(search_word);
     };
 
     @Override

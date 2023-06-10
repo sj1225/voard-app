@@ -10,42 +10,40 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping(value = "/api/v1")
 public class BoardController {
     @Autowired
-    BoardServiceImpl boardService;
+    BoardServiceImpl boardService;  // 게시판 서비스 생성
 
-    @GetMapping("/api/v1/board")
-    public List<Board> getBoardList() {
-        List<Board> brd = boardService.getBoardList();
+    /**
+     * 게시글 목록을 조회함
+     * @return
+     */
+    @GetMapping("/board")
+    public List<Board> getBoardList(String search_word) {
+        List<Board> brd = boardService.getBoardList(search_word);
         return brd;
     }
 
-    @GetMapping("/api/v1/board/search")
-    public List<Board> getBoardListSearch(
-            @RequestParam String search_word) {
-        List<Board> brd = boardService.getBoardListSearch(search_word);
-        return brd;
-    }
-
-    @GetMapping("/api/v1/board/{board_no}")
+    @GetMapping("/board/{board_no}")
     public List<Board> getAllBoardList(@PathVariable(name = "board_no") Integer board_no) {
         List<Board> brd = boardService.getBoardInfo(board_no);
         return brd;
     }
 
-    @PostMapping("/api/v1/board")
+    @PostMapping("/board")
     public void insertBoardList(
             @RequestBody Board brdVo) {
         boardService.insertBoardInfo(brdVo.getBoard_title(), brdVo.getBoard_user_id(), brdVo.getBoard_content());
     }
 
-    @PatchMapping("/api/v1/board")
+    @PatchMapping("/board")
     public void updateBoardList(
             @RequestBody Board brdVo) {
         boardService.updateBoardInfo(brdVo.getBoard_no(), brdVo.getBoard_title(), brdVo.getBoard_user_id(), brdVo.getBoard_content());
     }
 
-    @DeleteMapping("/api/v1/board")
+    @DeleteMapping("/board")
     public void deleteBoardList(
             @RequestParam Integer board_no, @RequestParam String board_user_id) {
         boardService.deleteBoardInfo(board_no, board_user_id);

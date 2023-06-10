@@ -6,8 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 @Mapper
 public interface BoardMapper {
-    public List<Board> getBoardList();
-    public List<Board> getBoardListSearch(String search_word);
+    public List<Board> getBoardList(String search_word);
     public List<Board> getBoardInfo(Integer board_no);
     public void insertBoardInfo(String board_title, String board_user_id, String board_content);
     public void updateBoardInfo(Integer board_no, String board_title, String board_user_id, String board_content);

@@ -6,14 +6,7 @@
         SELECT *
           FROM T_BOARD_LIST
          WHERE ROWNUM <![CDATA[<]]> 100
-        ORDER BY BOARD_NO DESC
-    </select>
-
-    <select id="getBoardListSearch" parameterType="com.asteroid.voardapp.model.Board" resultType="com.asteroid.voardapp.model.Board" >
-        SELECT *
-        FROM T_BOARD_LIST
-        WHERE ROWNUM <![CDATA[<]]> 100
-        AND ( UPPER(BOARD_TITLE) LIKE '%'||UPPER(#{search_word})||'%' OR BOARD_CONTENT LIKE '%'||UPPER(#{search_word})||'%' )
+           AND ( UPPER(BOARD_TITLE) LIKE '%'||UPPER(#{search_word})||'%' OR BOARD_CONTENT LIKE '%'||UPPER(#{search_word})||'%' )
         ORDER BY BOARD_NO DESC
     </select>
 
