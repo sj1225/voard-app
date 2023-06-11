@@ -6,7 +6,7 @@
         SELECT *
           FROM T_BOARD_LIST
          WHERE ROWNUM <![CDATA[<]]> 100
-           AND ( UPPER(BOARD_TITLE) LIKE '%'||UPPER(#{search_word})||'%' OR BOARD_CONTENT LIKE '%'||UPPER(#{search_word})||'%' )
+           AND ( UPPER(BOARD_TITLE) LIKE '%'||UPPER(#{search_word, jdbcType=VARCHAR})||'%' OR BOARD_CONTENT LIKE '%'||UPPER(#{search_word, jdbcType=VARCHAR})||'%' )
         ORDER BY BOARD_NO DESC
     </select>
 
