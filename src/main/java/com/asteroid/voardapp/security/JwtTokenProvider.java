@@ -41,10 +41,13 @@ public class JwtTokenProvider {
 
     // JWT 토큰 생성
     public String createJwtAccessToken(UserSysInfo user) {
+        log.debug("---------- 3-1.start JwtTokenProvider.createJwtAccessToken.user >>> " + user);
         Date now = new Date();
 
         // claim: JWT payload 에 저장되는 정보단위
-        Claims claims = Jwts.claims().setSubject(user.getUser_id().toString()); // user_id
+        Claims claims = Jwts.claims().setSubject(user.getUser_id()); // user_id
+        log.debug("---------- 3-2.start JwtTokenProvider.createJwtAccessToken.claims >>> " + claims);
+        log.debug("---------- 3-3.end JwtTokenProvider.createJwtAccessToken");
 
         // 토큰 생성
         return Jwts.builder()
@@ -56,11 +59,14 @@ public class JwtTokenProvider {
     }
 
     // JWT 리프레시 토큰 생성
-    public String createJwtRefreshToken(UserSysInfo user, String uuidValue, String ip) {
+    public String createJwtRefreshToken(UserSysInfo user, String uuidValue) {
+        log.debug("---------- 4-1.start JwtTokenProvider.createJwtRefreshToken.user >>> " + user);
         Date now = new Date();
 
-        Claims claims = Jwts.claims().setSubject(user.getUser_id().toString());  // user_id
+        Claims claims = Jwts.claims().setSubject(user.getUser_id());  // user_id
         //claims.put("value", uuidValue); // Universally unique identifier는 전세계 유일 ID번호
+        log.debug("---------- 4-2.start JwtTokenProvider.createJwtRefreshToken.claims >>> " + claims);
+        log.debug("---------- 4-3.end JwtTokenProvider.createJwtRefreshToken");
 
         // 토큰 생성하기
         return Jwts.builder()
