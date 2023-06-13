@@ -63,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
             // 5-2.API 접속 허용
             // 우선 permitAll()으로 함. 추후 동일 IP로 접속해야만 접속 가능하도록 수정할 것
-            .antMatchers(HttpMethod.GET, "/api/**").permitAll()
+            .antMatchers("/api/**").permitAll()
 
             // 5-3.그 외의 접속 인증 요청
             .anyRequest().authenticated()
