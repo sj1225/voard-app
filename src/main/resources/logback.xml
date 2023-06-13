@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+    <!-- 로그 패턴 설정 -->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %-5level %d{yy-MM-dd HH:mm:ss}[%thread] [%logger{0}:%line] - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <!-- 로그 설정 (ROOT 정보 Override함) -->
+    <logger name="com.asteroid.voardapp" level="DEBUG" >
+        <appender-ref ref="stdout"/>
+    </logger>
+
+    <!-- ROOT 경로 로그 설정 -->
+<!--    <root level="INFO">-->
+<!--        <appender-ref ref="stdout"/>-->
+<!--    </root>-->
+</configuration>
