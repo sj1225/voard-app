@@ -16,36 +16,58 @@ public class BoardController {
     BoardServiceImpl boardService;  // 게시판 서비스 생성
 
     /**
-     * 게시글 목록을 조회함
-     * @return
+     * 게시글 목록을 반환한다.
+     * @param search_word 검색어(제목, 본문 포함)
+     * @return 게시글 목록
      */
     @GetMapping("/board")
     public List<Board> getBoardList(String search_word) {
-        List<Board> brd = boardService.getBoardList(search_word);
-        return brd;
+        List<Board> board_list = boardService.getBoardList(search_word);
+        return board_list;
     }
 
+    /**
+     * 게시글 상세정보를 반환한다.
+     * @param board_no 게시글 번호
+     * @return 해당 번호의 게시글 상세정보
+     */
     @GetMapping("/board/{board_no}")
-    public List<Board> getAllBoardList(@PathVariable(name = "board_no") Integer board_no) {
-        List<Board> brd = boardService.getBoardInfo(board_no);
-        return brd;
+    public List<Board> getBoardDetail(
+            @PathVariable(name = "board_no") Integer board_no) {
+        List<Board> board_info = boardService.getBoardDetail(board_no);
+        return board_info;
     }
 
+    /**
+     * 게시글을 등록한다.
+     * @param board 게시글 정보 (제목, 작성자, 본문)
+     */
     @PostMapping("/board")
     public void insertBoardList(
-            @RequestBody Board brdVo) {
-        boardService.insertBoardInfo(brdVo.getBoard_title(), brdVo.getBoard_user_id(), brdVo.getBoard_content());
+            @RequestBody Board board) {
+        boardService.insertBoardDetail(board.getBoard_title(), board.getBoard_user_id(), board.getBoard_content());
     }
 
-    @PatchMapping("/board")
+    /**
+     * 게시글을 수정한다.
+     * @param board 게시글 정보(번호, 제목, 작성자, 본문)
+     */
+    @PatchMapping("/board/{board_no}")
     public void updateBoardList(
-            @RequestBody Board brdVo) {
-        boardService.updateBoardInfo(brdVo.getBoard_no(), brdVo.getBoard_title(), brdVo.getBoard_user_id(), brdVo.getBoard_content());
+            @PathVariable(name = "board_no") Integer board_no,
+            @RequestBody Board board) {
+        boardService.updateBoardDetail(board_no, board.getBoard_title(), board.getBoard_user_id(), board.getBoard_content());
     }
 
-    @DeleteMapping("/board")
+    /**
+     * 게시글을 삭제한다.
+     * @param board_no 게시글 번호
+     */
+    @DeleteMapping("/board/{board_no}")
     public void deleteBoardList(
-            @RequestParam Integer board_no, @RequestParam String board_user_id) {
-        boardService.deleteBoardInfo(board_no, board_user_id);
+            @PathVariable(name = "board_no") Integer board_no) {
+        boardService.deleteBoardDetail(board_no);
+
+        
     }
 }

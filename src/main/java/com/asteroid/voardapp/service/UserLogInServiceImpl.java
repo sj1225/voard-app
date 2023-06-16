@@ -37,8 +37,12 @@ public class UserLogInServiceImpl implements UserLogInService{
 
         int idNotFound = 1;     // ID 존재 여부
         int pwNotCorrect = 0;   // 비밀번호 일치 여부
+
         String token = null;
+
+        String user_id = null;
         String user_nm = null;
+
         if(userSysInfo != null){
             idNotFound = 0;
             token = jwtTokenProvider.createJwtAccessToken(userSysInfo);
@@ -46,11 +50,15 @@ public class UserLogInServiceImpl implements UserLogInService{
 
             String refreshTokenValue = UUID.randomUUID().toString().replace("-", "");
             String refreshToken = jwtTokenProvider.createJwtRefreshToken(userSysInfo, refreshTokenValue);
+
+            user_id = userSysInfo.getUser_id();
             user_nm = userSysInfo.getUser_nm();
         }
 //        if ( !passwordEncoder.matches(userSysInfo.getPassword(), user.getPassword()) ){
 //            pwNotCorrect = 1;
 //        }
+
+        result.put("user_id", user_id);
         result.put("user_nm", user_nm);
         result.put("idNotFound", idNotFound);
         result.put("pwNotCorrect", pwNotCorrect);

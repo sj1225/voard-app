@@ -10,13 +10,13 @@
         ORDER BY BOARD_NO DESC
     </select>
 
-    <select id="getBoardInfo" parameterType="com.asteroid.voardapp.model.Board" resultType="com.asteroid.voardapp.model.Board" >
+    <select id="getBoardDetail" parameterType="com.asteroid.voardapp.model.Board" resultType="com.asteroid.voardapp.model.Board" >
         SELECT *
           FROM T_BOARD_LIST
          WHERE BOARD_NO = #{board_no}
     </select>
 
-    <insert id="insertBoardInfo" parameterType="com.asteroid.voardapp.model.Board">
+    <insert id="insertBoardDetail" parameterType="com.asteroid.voardapp.model.Board">
         DECLARE
             V_BOARD_NO NUMBER;
         BEGIN
@@ -35,7 +35,7 @@
         END;
     </insert>
 
-    <update id="updateBoardInfo" parameterType="com.asteroid.voardapp.model.Board">
+    <update id="updateBoardDetail" parameterType="com.asteroid.voardapp.model.Board">
          UPDATE T_BOARD_LIST
             SET board_title = #{board_title},
                 board_mdf_date = TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
@@ -44,9 +44,8 @@
             AND board_user_id = #{board_user_id}
     </update>
 
-    <delete id="deleteBoardInfo" parameterType="com.asteroid.voardapp.model.Board">
+    <delete id="deleteBoardDetail" parameterType="com.asteroid.voardapp.model.Board">
         DELETE FROM T_BOARD_LIST
          WHERE board_no = #{board_no}
-           AND board_user_id = #{board_user_id}
     </delete>
 </mapper>
