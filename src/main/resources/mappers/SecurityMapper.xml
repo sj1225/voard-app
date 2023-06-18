@@ -4,7 +4,7 @@
     <select id="selectByUserId" resultType="com.asteroid.voardapp.model.UserSysInfo" parameterType="com.asteroid.voardapp.model.UserSysInfo">
         SELECT USER_ID,
                USER_NM,
-               PASSWORD
+               CRYPTO.DECRYPT(PASSWORD) PASSWORD
           FROM T_USER_INFO
          WHERE USER_ID = #{user_id}
     </select>
