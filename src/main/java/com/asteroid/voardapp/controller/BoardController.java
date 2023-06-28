@@ -67,7 +67,5 @@ public class BoardController {
     public void deleteBoardList(
             @PathVariable(name = "board_no") Integer board_no) {
         boardService.deleteBoardDetail(board_no);
-
-        
     }
 }
