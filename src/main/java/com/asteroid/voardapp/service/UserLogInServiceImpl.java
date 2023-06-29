@@ -48,9 +48,6 @@ public class UserLogInServiceImpl implements UserLogInService{
             token = jwtTokenProvider.createJwtAccessToken(userSysInfo);
             log.debug("---------- 2-3.start UserLogInServiceImpl.login.token >>> " + token);
 
-            String refreshTokenValue = UUID.randomUUID().toString().replace("-", "");
-            String refreshToken = jwtTokenProvider.createJwtRefreshToken(userSysInfo, refreshTokenValue);
-
             user_id = userSysInfo.getUser_id();
             user_nm = userSysInfo.getUser_nm();
         }
