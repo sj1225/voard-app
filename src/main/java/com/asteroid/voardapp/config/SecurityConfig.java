@@ -23,11 +23,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    private final JwtTokenProvider jwtTokenProvider;                // JWT Token Provider
+    private final JwtTokenProvider jwtTokenProvider;                            // JWT Token Provider
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/js/**", "*.ico");  // static 하단 파일 인증 무시
+        web.ignoring().antMatchers("/js/**", "/css/**", "*.ico");   // 정적 컨텐츠 인가 & 인증 무시
     }
 
     @Override
